@@ -93,14 +93,15 @@ images.put(new Integer(KeyEvent.VK_UP), "right.jpg");
 		frame.pack();
 		// 10. Set the defaultCloseOperation of your from to
 		// JFrame.EXIT_ON_CLOSE
-		defaultCloseOperation = JFrame.EXIT_ON_CLOSE;
+	
 		// 11. Add a key listener to the frame
 		frame.addKeyListener(this);
 		// 12. Create a new instance of Random
-		int random;
+		Random s = new Random();
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-		
+		speak("Simon says press this key");
+		speak("Press this key");
 		// 14. Above, set the value of simonSays to true/false appropriately
 		
 	}
