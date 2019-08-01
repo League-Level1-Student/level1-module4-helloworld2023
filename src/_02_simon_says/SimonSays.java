@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import com.sun.xml.internal.ws.Closeable;
+
 import java.io.IOException;
 
 public class SimonSays extends KeyAdapter {
@@ -30,72 +34,75 @@ public class SimonSays extends KeyAdapter {
 
 	// Complete steps 1 - 7 before you test
 	// 1. Declare a JFrame variable
-
+	JFrame frame;
 	public void run() {
 		// 2. Add the four images that match keyboard keys like this:
 		// images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
-
+images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
+images.put(new Integer(KeyEvent.VK_UP), "down.jpg");
+images.put(new Integer(KeyEvent.VK_UP), "left.jpg");
+images.put(new Integer(KeyEvent.VK_UP), "right.jpg");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching
 		// key when
 		// 'Simon says' otherwise press a different key"
-
+	JOptionPane.showMessageDialog(null, "Press the matching key when 'Simon says'. \n Otherwise, press a different key.");
 		// 4. Call the showImage method to show an image
-
+	showImage();
 	}
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+	int score = 0;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-
+		if(hashCode()==imageIndex) {
 		// 17. Increase the value of score
-
+		score++;
 		// 18. Use the speak method to tell the user they were correct
-
+		speak("You are correct.");
+		}
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
-
-		// 20. Increase the value of score
-
-		// 21. Use the speak method to tell the user they were correct
-
-		// 22. Increment tries by 1
-
-		// 25. If tries is greater than 9 (or however many you want)...
-
+		else{
+		// 20. Decrease the value of score
+			score--;
+		// 21. Use the speak method to tell the user they were incorrect
+			speak("You are incorrect.");
+		// 22. Increment tries by 1.
+			tries++;
+		}
 		// 26. Tell the user their score
-
+		System.out.println(score);
 		// 27. Exit the program
-
+		
 		// 23. Dispose of the frame
-
+		frame.dispose();
 		// 24. Call the showImage method to show a new image
+		showImage();
 	}
 
 	private void showImage() {
 		// 5. Initialize your frame to a new JFrame()
-
+		frame = new JFrame();
 		// 6. Set the frame to visible
-
+		frame.isVisible();
 		// 7. Uncomment the following line to add a random image to your frame
-		// frame.add(getNextRandomImage());
-
+		frame.add(getNextRandomImage());
 		// 8. Set the name of your frame
-
+		frame.setTitle("Simon Says");
 		// 9. Pack the frame
-
+		frame.pack();
 		// 10. Set the defaultCloseOperation of your from to
 		// JFrame.EXIT_ON_CLOSE
-
+		defaultCloseOperation = JFrame.EXIT_ON_CLOSE;
 		// 11. Add a key listener to the frame
-
+		frame.addKeyListener(this);
 		// 12. Create a new instance of Random
-
+		int random;
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-
+		
 		// 14. Above, set the value of simonSays to true/false appropriately
-
+		
 	}
 
 	private Component getNextRandomImage() {
