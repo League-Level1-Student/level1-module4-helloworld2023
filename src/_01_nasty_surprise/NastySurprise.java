@@ -15,22 +15,28 @@ import javax.swing.JPanel;
 
 public class NastySurprise implements ActionListener{
 
+	JButton trick = new JButton();
+	JButton treat = new JButton();
+	
 	public static void main(String[] args) {
+		
+		NastySurprise ns = new NastySurprise();
+		ns.create();
 		
 	}
 	
 	public void create() {
 		JFrame frame = new JFrame();
-		frame.isVisible();
+		frame.setVisible(true);
 		JPanel panel = new JPanel();
 		frame.add(panel);
-		JButton trick = new JButton();
 		panel.add(trick);
 		trick.addActionListener(this);
-		JButton treat = new JButton();
+		trick.setText("Trick");
 		panel.add(treat);
 		treat.addActionListener(this);
-		
+		treat.setText("Treat");
+		frame.pack();
 	}
 
 	private void showPictureFromTheInternet(String imageUrl) {
@@ -50,6 +56,12 @@ public class NastySurprise implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource().equals(trick)) {
+			showPictureFromTheInternet("https://i.pinimg.com/originals/39/6f/14/396f14bd9c68652906500047d677356c.jpg");
+		}
+		if(e.getSource().equals(treat)) {
+			showPictureFromTheInternet("https://upload.wikimedia.org/wikipedia/en/3/34/InsidiousTheLastKey.jpg");
+		}
 	}
 
 }
