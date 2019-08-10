@@ -22,15 +22,27 @@ public class ChuckleClicker implements ActionListener {
 	
 	public void makeButtons(){
 		JFrame frame = new JFrame();
-		frame.isVisible();
+		frame.setVisible(true);
 		JPanel panel = new JPanel();
+		frame.add(panel);
+		panel.add(joke);
+		panel.add(pun);
 		joke.addActionListener(this);
 		pun.addActionListener(this);
+		joke.setText("Joke");
+		pun.setText("Punchline");
+		frame.pack();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		if(arg0.getSource() == joke) {
+			System.out.println("What kind of tea did the American Colonists want?");
+		}
+		if(arg0.getSource() == pun) {
+			System.out.println("Liberty");
+		}
 	}
 	
 }

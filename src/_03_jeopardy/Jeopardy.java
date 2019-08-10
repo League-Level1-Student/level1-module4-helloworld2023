@@ -50,7 +50,7 @@ public class Jeopardy implements ActionListener {
 		// 2. Give your frame a title
 		frame.setTitle("Jeopardy");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-		JPanel panel = new JPanel();
+		JPanel panel = createHeader("Kcon");
 		// 4. Add the header component to the quizPanel
 		quizPanel.add(panel);
 		// 5. Add the quizPanel to the frame
@@ -79,6 +79,14 @@ public class Jeopardy implements ActionListener {
 		fourthButton.setText("$800");
 		fifthButton = createButton("$1,000");
 		fifthButton.setText("$1,000");
+		
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
+		fifthButton.addActionListener(this);
+		
+		quizPanel.add(thirdButton);
+		quizPanel.add(fourthButton);
+		quizPanel.add(fifthButton);
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -104,24 +112,33 @@ public class Jeopardy implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
-		// Remove this temporary message after testing:
-		JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-		if(buttonPressed==firstButton) {
+		if(buttonPressed.equals(firstButton)) {
 			// Call the askQuestion() method
-			askQuestion("What was RM's former stage name?", "Rap Monster", 200);
+			askQuestion("What does 'Kcon' stand for?", "Korean-con", 200);
 			firstButton.setText("");
 		}
 		// Complete the code in the askQuestion() method. When you play the game, the score should change
 		// If the buttonPressed was the secondButton
-		if (buttonPressed==secondButton) {
+		if (buttonPressed.equals(secondButton)) {
 			// Call the askQuestion() method with a harder question
-			askQuestion("When is RM's birthday? (month/date/year)", "9/12/1995", 400);
+			askQuestion("Where are the Kcon concerts held?", "Staples Center", 400);
 		// Clear the text on the button that was pressed (set the button text to nothing)
 			secondButton.setText("");
+		}
+		if (buttonPressed.equals(thirdButton)) {
+			askQuestion("Where is the Kcon Convention held?", "LA Convention Center", 600);
+			thirdButton.setText("");
+		}
+		if (buttonPressed.equals(fourthButton)) {
+			askQuestion("What are the 3 K's of Kcon?", "K-Pop, K-Food, K-Beauty", 800);
+			fourthButton.setText("");
+		}
+		if (buttonPressed.equals(fifthButton)) {
+			askQuestion("What is the new event being held at Kcon?", "Kcon Rookies", 1000);
+			fifthButton.setText("");
 		}
 	}
 		
@@ -148,8 +165,8 @@ public class Jeopardy implements ActionListener {
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 			System.out.println("You are incorrect.");
 		// Call the updateScore() method
-			updateScore();
 		}
+		updateScore();
 	}
 
 	public void playJeopardyTheme() {
