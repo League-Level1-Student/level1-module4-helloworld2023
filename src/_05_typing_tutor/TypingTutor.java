@@ -1,6 +1,7 @@
 package _05_typing_tutor;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
@@ -34,7 +35,8 @@ public class TypingTutor implements KeyListener {
 		currentLetter = generateRandomLetter();
 		label.setText("" + currentLetter);
 		label.setFont(label.getFont().deriveFont(28.0f));
-		label.setHorizontalAlignment(label.CENTER);
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setPreferredSize(new Dimension(100, 30));
 		frame.addKeyListener(this);
 		frame.add(panel);
 		panel.add(label);
@@ -58,6 +60,7 @@ public class TypingTutor implements KeyListener {
 		else {
 			panel.setBackground(Color.red);
 		}
+		label.setHorizontalAlignment(JLabel.CENTER);
 	}
 
 	@Override
